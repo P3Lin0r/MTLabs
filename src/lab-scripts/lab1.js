@@ -13,7 +13,7 @@ function showCondition() {
     headerCond.textContent = `Умова лабораторної роботи ${currentLabNumber}`;
 
     const condition = document.createElement('p');
-    fetch(`./src/conditions/lab${currentLabNumber}.txt`)
+    fetch(`/src/conditions/lab${currentLabNumber}.txt`)
         .then(response => response.text())
         .then(txtContent => {
             condition.textContent = txtContent;
@@ -40,7 +40,7 @@ function showResult() {
     iframe.style.height = '600px';
     contentElement.appendChild(iframe);
 
-    fetch(`./src/lab-pages/lab${currentLabNumber}.html`)
+    fetch(`/src/lab-pages/lab${currentLabNumber}.html`)
         .then(response => response.text())
         .then(htmlContent => {
             const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
@@ -67,7 +67,7 @@ function showResult() {
     openButton.classList.add('open-page-button');
 
     openButton.addEventListener('click', () => {
-        window.open(`./src/lab-pages/lab${currentLabNumber}.html`, '_blank');
+        window.open(`/src/lab-pages/lab${currentLabNumber}.html`, '_blank');
     });
 
     contentElement.insertBefore(openButton, iframe);
@@ -82,7 +82,7 @@ function showHTML() {
     const codeBlock = document.createElement('pre');
     codeBlock.classList.add('code');
 
-    fetch(`./src/lab-pages/lab${currentLabNumber}.html`)
+    fetch(`/src/lab-pages/lab${currentLabNumber}.html`)
         .then(response => response.text())
         .then(htmlContent => {
             codeBlock.textContent = htmlContent;
@@ -104,7 +104,7 @@ function showCSS() {
     const codeBlock = document.createElement('pre');
     codeBlock.classList.add('code');
 
-    fetch(`./src/lab-styles/lab${currentLabNumber}.css`)
+    fetch(`/src/lab-styles/lab${currentLabNumber}.css`)
         .then(response => response.text())
         .then(cssContent => {
             codeBlock.textContent = cssContent;
@@ -126,7 +126,7 @@ function showJS() {
     const codeBlock = document.createElement('pre');
     codeBlock.classList.add('code');
 
-    fetch(`./src/lab-scripts/lab${currentLabNumber}.js`)
+    fetch(`/src/lab-scripts/lab${currentLabNumber}.js`)
         .then(response => response.text())
         .then(jsContent => {
             codeBlock.textContent = jsContent;
