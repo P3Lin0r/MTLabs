@@ -1,5 +1,7 @@
 let currentLabNumber = 1;
 
+
+
 function selectLab(labNumber) {
     currentLabNumber = labNumber;
     document.querySelector('.content').innerHTML = '';
@@ -138,3 +140,16 @@ function showJS() {
             contentElement.appendChild(codeBlock);
         });
 }
+
+
+
+function selectSubMenu(labNumber) {
+    const submenuLab = document.getElementById(`submenu-${labNumber}`);
+
+    if (submenuLab.classList.contains('hidden')) {
+        submenuLab.classList.remove('hidden');
+    } else {
+        submenuLab.classList.add('hidden');
+    }
+}
+

@@ -75,7 +75,17 @@ body {
     overflow-y: auto;
 }
 
-
+.submenu {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.submenu .button{
+    background-color: #d2d2d2;
+}
+.hidden {
+    display: none;
+}
 
 .open-page-button {
     width: 100%;

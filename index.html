@@ -10,7 +10,11 @@
     <div class="container">
         <div class="left-column">
             <a href="#" class="button" onclick="selectLab(1)">Лабораторна робота 1</a>
-            <a href="#" class="button" onclick="selectLab(2)">Лабораторна робота 2</a>
+            <a href="#" class="button" id="lab2-btn" onclick="selectSubMenu('lab2')">Лабораторна робота 2</a>
+            <div id="submenu-lab2" class="submenu hidden">
+                <a href="#" class="button" onclick="selectLab('2_1')">Лабораторна робота 2_1</a>
+                <a href="#" class="button" onclick="selectLab('2_2')">Лабораторна робота 2_2</a>
+            </div>
             <a href="#" class="button" >Лабораторна робота 3</a>
             <a href="#" class="button" >Лабораторна робота 4</a>
             <a href="#" class="button" >Лабораторна робота 5</a>
