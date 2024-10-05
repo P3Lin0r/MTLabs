@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Library>
+    <Books>
+        <Book>
+            <Id>1</Id>
+            <Shelf>
+                <Number>1</Number>
+                <Genre>Fantasy</Genre>
+                <Theme>Adventure</Theme>
+            </Shelf>
+            <Author>
+                <FirstName>Tove</FirstName>
+                <LastName>Jansson</LastName>
+            </Author>
+            <Title>Comet in Moominland</Title>
+            <EditedBy>Sort of Books</EditedBy>
+            <TotalCopies>8</TotalCopies>
+            <CopiesIssued>3</CopiesIssued>
+        </Book>
+        <Book>
+            <Id>2</Id>
+            <Shelf>
+                <Number>2</Number>
+                <Genre>Romance</Genre>
+                <Theme>Love</Theme>
+            </Shelf>
+            <Author>
+                <FirstName>Jane</FirstName>
+                <LastName>Austen</LastName>
+            </Author>
+            <Title>Pride and Prejudice</Title>
+            <EditedBy>Union Square and Co.</EditedBy>
+            <TotalCopies>12</TotalCopies>
+            <CopiesIssued>7</CopiesIssued>
+        </Book>
+    </Books>
+</Library>

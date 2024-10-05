@@ -5,6 +5,7 @@ let currentLabNumber = 1;
 function selectLab(labNumber) {
     currentLabNumber = labNumber;
     document.querySelector('.content').innerHTML = '';
+    labBtnChanger();
 }
 
 function showCondition() {
@@ -151,5 +152,101 @@ function selectSubMenu(labNumber) {
     } else {
         submenuLab.classList.add('hidden');
     }
+}
+///////////////
+/////////////
+//////////////
+/////////////
+//////////////
+//////////
+
+function showXML(){
+    const contentElement = document.querySelector('.content');
+    contentElement.innerHTML = '';
+
+    const codeBlock = document.createElement('pre');
+    codeBlock.classList.add('code');
+    fetch(`./src/lab-xmls/lab${currentLabNumber}.xml`)
+        .then(response => response.text())
+        .then(jsContent => {
+            codeBlock.textContent = jsContent;
+            contentElement.appendChild(codeBlock);
+        })
+        .catch(error => {
+            console.error('Ошибка при загрузке XML:', error);
+            codeBlock.textContent = 'Ошибка при загрузке XML';
+            contentElement.appendChild(codeBlock);
+        });
+}
+function showStModel() {
+    const contentElement = document.querySelector('.content');
+    contentElement.innerHTML = '';
+
+    const stModelimg = document.createElement('img');
+    fetch(`./img/lab${currentLabNumber}StModel.png`) 
+        .then(response => response.blob()) 
+        .then(blob => {
+            const objectURL = URL.createObjectURL(blob);
+            stModelimg.src = objectURL;
+            contentElement.appendChild(stModelimg);
+        })
+        .catch(error => {
+            console.error('Ошибка при загрузке изображения:', error);
+        });
+}
+function showDnModel(){
+    const contentElement = document.querySelector('.content');
+    contentElement.innerHTML = '';
+
+    const dnModelimg = document.createElement('img');
+    fetch(`./img/lab${currentLabNumber}DnModel.png`)
+        .then(response => response.blob()) 
+        .then(blob => {
+            const objectURL = URL.createObjectURL(blob);
+            dnModelimg.src = objectURL;
+            contentElement.appendChild(dnModelimg);
+        })
+        .catch(error => {
+            console.error('Ошибка при загрузке изображения:', error);
+        });
+}
+
+
+function labBtnChanger(){
+    const bwrp = document.querySelector('.buttons-wrapper');
+    bwrp.innerHTML = ' ';
+    const buttons = [];
+
+    if (currentLabNumber > 0 && currentLabNumber <= 6 || typeof currentLabNumber === 'string') {
+
+        buttons.push(
+          '<div class="button condition" onclick="showCondition()">Умова</div>',
+          '<div class="button result" onclick="showResult()">Результат</div>',
+          '<div class="button htmlshow" onclick="showHTML()">HTML</div>',
+          '<div class="button cssshow" onclick="showCSS()">CSS</div>',
+          '<div class="button jsshow" onclick="showJS()">JS</div>'
+        );        
+    }
+    if(currentLabNumber > 6 && currentLabNumber <=10){
+        
+        if(currentLabNumber === 7){
+            buttons.push(
+                '<div class="button condition" onclick="showCondition()">Умова</div>',
+                '<div class="button statisticalmodel" onclick="showStModel()">Статистична модель</div>',
+                '<div class="button dynamicmodel" onclick="showDnModel()">Динамічна модель</div>',
+                '<div class="button xmlshow" onclick="showXML()">XML</div>',
+            );
+        }
+        else if(currentLabNumber === 8){
+
+        }
+        else if(currentLabNumber === 7){
+
+        }
+        else if(currentLabNumber === 8){
+            
+        }
+    }
+    bwrp.insertAdjacentHTML('beforeend', buttons.join(''));
 }
 
