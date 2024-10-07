@@ -1,0 +1,17 @@
+<!ELEMENT Library (Books)>
+<!ELEMENT Books (Book+)>
+<!ELEMENT Book (Shelf, Authors, Title, EditedBy, TotalCopies, CopiesIssued)>
+<!ELEMENT Shelf (Genre, Theme)>
+<!ELEMENT Genre (#PCDATA)>
+<!ELEMENT Theme (#PCDATA)>
+<!ELEMENT Authors (Author+)>
+<!ELEMENT Author (FirstName, LastName)>
+<!ELEMENT FirstName (#PCDATA)>
+<!ELEMENT LastName (#PCDATA)>
+<!ELEMENT Title (#PCDATA)>
+<!ELEMENT EditedBy (#PCDATA)>
+<!ELEMENT TotalCopies (#PCDATA)>
+<!ELEMENT CopiesIssued (#PCDATA)>
+
+<!ATTLIST Book id ID #REQUIRED>
+<!ATTLIST Shelf number NMTOKEN #REQUIRED>

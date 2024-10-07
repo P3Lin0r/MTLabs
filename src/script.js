@@ -211,6 +211,44 @@ function showDnModel(){
         });
 }
 
+function showDTD(){
+    const contentElement = document.querySelector('.content');
+    contentElement.innerHTML = '';
+
+    const codeBlock = document.createElement('pre');
+    codeBlock.classList.add('code');
+    fetch(`./src/lab-dtds/lab${currentLabNumber}.dtd`)
+        .then(response => response.text())
+        .then(jsContent => {
+            codeBlock.textContent = jsContent;
+            contentElement.appendChild(codeBlock);
+        })
+        .catch(error => {
+            console.error('Ошибка при загрузке DTD:', error);
+            codeBlock.textContent = 'Ошибка при загрузке DTD';
+            contentElement.appendChild(codeBlock);
+        });
+}
+
+function showXSD(){
+    const contentElement = document.querySelector('.content');
+    contentElement.innerHTML = '';
+
+    const codeBlock = document.createElement('pre');
+    codeBlock.classList.add('code');
+    fetch(`./src/lab-xsds/lab${currentLabNumber}.xsd`)
+        .then(response => response.text())
+        .then(jsContent => {
+            codeBlock.textContent = jsContent;
+            contentElement.appendChild(codeBlock);
+        })
+        .catch(error => {
+            console.error('Ошибка при загрузке XSD:', error);
+            codeBlock.textContent = 'Ошибка при загрузке XSD';
+            contentElement.appendChild(codeBlock);
+        });
+}
+
 
 function labBtnChanger(){
     const bwrp = document.querySelector('.buttons-wrapper');
@@ -238,7 +276,12 @@ function labBtnChanger(){
             );
         }
         else if(currentLabNumber === 8){
-
+            buttons.push(
+                '<div class="button condition" onclick="showCondition()">Умова</div>',
+                '<div class="button xmlshow" onclick="showXML()">XML</div>',
+                '<div class="button showDTD" onclick="showDTD()">DTD</div>',
+                '<div class="button showXSD" onclick="showXSD()">XSD</div>',
+            );
         }
         else if(currentLabNumber === 7){
 

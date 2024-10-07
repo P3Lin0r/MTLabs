@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="Library">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Books" type="BooksType"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="BooksType">
+        <xs:sequence>
+            <xs:element name="Book" type="BookType" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="BookType">
+        <xs:sequence>
+            <xs:element name="Shelf" type="ShelfType"/>
+            <xs:element name="Authors" type="AuthorsType"/>
+            <xs:element name="Title" type="xs:string"/>
+            <xs:element name="EditedBy" type="xs:string"/>
+            <xs:element name="TotalCopies" type="xs:int"/>
+            <xs:element name="CopiesIssued" type="xs:int"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:ID" use="required"/>
+    </xs:complexType>
+
+
+    <xs:complexType name="ShelfType">
+        <xs:sequence>
+            <xs:element name="Genre" type="xs:string"/>
+            <xs:element name="Theme" type="xs:string"/>
+        </xs:sequence>
+        <xs:attribute name="number" type="xs:int" use="required"/>
+    </xs:complexType>
+
+
+    <xs:complexType name="AuthorsType">
+        <xs:sequence>
+            <xs:element name="Author" type="AuthorType" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="AuthorType">
+        <xs:sequence>
+            <xs:element name="FirstName" type="xs:string"/>
+            <xs:element name="LastName" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
