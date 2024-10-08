@@ -249,6 +249,26 @@ function showXSD(){
         });
 }
 
+function showXSL(){
+    const contentElement = document.querySelector('.content');
+    contentElement.innerHTML = '';
+
+    const codeBlock = document.createElement('pre');
+    codeBlock.classList.add('code');
+    fetch(`./src/lab-xsls/lab${currentLabNumber}.xsl`)
+        .then(response => response.text())
+        .then(jsContent => {
+            codeBlock.textContent = jsContent;
+            contentElement.appendChild(codeBlock);
+        })
+        .catch(error => {
+            console.error('Ошибка при загрузке XSL:', error);
+            codeBlock.textContent = 'Ошибка при загрузке XSL';
+            contentElement.appendChild(codeBlock);
+        });
+}
+
+
 
 function labBtnChanger(){
     const bwrp = document.querySelector('.buttons-wrapper');
@@ -283,10 +303,14 @@ function labBtnChanger(){
                 '<div class="button showXSD" onclick="showXSD()">XSD</div>',
             );
         }
-        else if(currentLabNumber === 7){
-
+        else if(currentLabNumber === 9){
+            buttons.push(
+                '<div class="button condition" onclick="showCondition()">Умова</div>',
+                '<div class="button xmlshow" onclick="showXML()">XML</div>',
+                '<div class="button showSXL" onclick="showXSL()">XSL</div>',
+            );
         }
-        else if(currentLabNumber === 8){
+        else if(currentLabNumber === 10){
             
         }
     }
