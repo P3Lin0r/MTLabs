@@ -6,32 +6,191 @@
                 <Genre>Fantasy</Genre>
                 <Theme>Adventure</Theme>
             </Shelf>
-            <Authors>
-                <Author>
-                    <FirstName>Tove</FirstName>
-                    <LastName>Jansson</LastName>
-                </Author>
-            </Authors>
             <Title>Comet in Moominland</Title>
             <EditedBy>Sort of Books</EditedBy>
             <TotalCopies>8</TotalCopies>
             <CopiesIssued>3</CopiesIssued>
         </Book>
+        
         <Book id="book2">
             <Shelf number="2">
                 <Genre>Romance</Genre>
                 <Theme>Love</Theme>
             </Shelf>
-            <Authors>
-                <Author>
-                    <FirstName>Jane</FirstName>
-                    <LastName>Austen</LastName>
-                </Author>
-            </Authors>
             <Title>Pride and Prejudice</Title>
             <EditedBy>Union Square and Co.</EditedBy>
             <TotalCopies>12</TotalCopies>
             <CopiesIssued>7</CopiesIssued>
         </Book>
+
+        <Book id="book3">
+            <Shelf number="3">
+                <Genre>Science Fiction</Genre>
+                <Theme>Space Exploration</Theme>
+            </Shelf>
+            <Title>The Martian</Title>
+            <EditedBy>Random House</EditedBy>
+            <TotalCopies>15</TotalCopies>
+            <CopiesIssued>10</CopiesIssued>
+        </Book>
+
+        <Book id="book4">
+            <Shelf number="4">
+                <Genre>Historical Fiction</Genre>
+                <Theme>War</Theme>
+            </Shelf>
+            <Title>All the Light We Cannot See</Title>
+            <EditedBy>Fourth Estate</EditedBy>
+            <TotalCopies>20</TotalCopies>
+            <CopiesIssued>13</CopiesIssued>
+        </Book>
+
+        <Book id="book5">
+            <Shelf number="5">
+                <Genre>Non-fiction</Genre>
+                <Theme>Biography</Theme>
+            </Shelf>
+            <Title>The Wright Brothers</Title>
+            <EditedBy>The History Press Ltd</EditedBy>
+            <TotalCopies>10</TotalCopies>
+            <CopiesIssued>5</CopiesIssued>
+        </Book>
+
+        <Book id="book6">
+            <Shelf number="6">
+                <Genre>Mystery</Genre>
+                <Theme>Crime Investigation</Theme>
+            </Shelf>
+            <Title>Gone Girl</Title>
+            <EditedBy>Phoenix</EditedBy>
+            <TotalCopies>25</TotalCopies>
+            <CopiesIssued>18</CopiesIssued>
+        </Book>
+
+        <Book id="book7">
+            <Shelf number="7">
+                <Genre>Drama</Genre>
+                <Theme>Family</Theme>
+            </Shelf>
+            <Title>Atonement</Title>
+            <EditedBy>Random House</EditedBy>
+            <TotalCopies>13</TotalCopies>
+            <CopiesIssued>9</CopiesIssued>
+        </Book>
+
+        <Book id="book8">
+            <Shelf number="8">
+                <Genre>Thriller</Genre>
+                <Theme>Psychological</Theme>
+            </Shelf>
+            <Title>The Girl on the Train</Title>
+            <EditedBy>Transworld Digital</EditedBy>
+            <TotalCopies>30</TotalCopies>
+            <CopiesIssued>20</CopiesIssued>
+        </Book>
+        
+        <Book id="book9">
+            <Shelf number="9">
+                <Genre>Fantasy</Genre>
+                <Theme>Epic</Theme>
+            </Shelf>
+            <Title>The Dark Tower</Title>
+            <EditedBy>Hodder</EditedBy>
+            <TotalCopies>35</TotalCopies>
+            <CopiesIssued>25</CopiesIssued>
+        </Book>
+
+        <Book id="book10">
+            <Shelf number="10">
+                <Genre>Horror</Genre>
+                <Theme>Supernatural</Theme>
+            </Shelf>
+            <Title>The Shining</Title>
+            <EditedBy>Hodder</EditedBy>
+            <TotalCopies>18</TotalCopies>
+            <CopiesIssued>12</CopiesIssued>
+        </Book>
     </Books>
+
+    <Authors>
+        <Author id="author1">
+            <FirstName>Tove</FirstName>
+            <LastName>Jansson</LastName>
+        </Author>
+        <Author id="author2">
+            <FirstName>Jane</FirstName>
+            <LastName>Austen</LastName>
+        </Author>
+        <Author id="author3">
+            <FirstName>Andy</FirstName>
+            <LastName>Weir</LastName>
+        </Author>
+        <Author id="author4">
+            <FirstName>Anthony</FirstName>
+            <LastName>Doerr</LastName>
+        </Author>
+        <Author id="author5">
+            <FirstName>David</FirstName>
+            <LastName>McCullough</LastName>
+        </Author>
+        <Author id="author6">
+            <FirstName>Gillian</FirstName>
+            <LastName>Flynn</LastName>
+        </Author>
+        <Author id="author7">
+            <FirstName>Ian</FirstName>
+            <LastName>McEwan</LastName>
+        </Author>
+        <Author id="author8">
+            <FirstName>Paula</FirstName>
+            <LastName>Hawkins</LastName>
+        </Author>
+        <Author id="author9">
+            <FirstName>Stephen</FirstName>
+            <LastName>King</LastName>
+        </Author>
+    </Authors>
+
+    <Authorships>
+        <Authorship>
+            <BookID>book1</BookID>
+            <AuthorID>author1</AuthorID>
+        </Authorship>
+        <Authorship>
+            <BookID>book2</BookID>
+            <AuthorID>author2</AuthorID>
+        </Authorship>
+        <Authorship>
+            <BookID>book3</BookID>
+            <AuthorID>author3</AuthorID>
+        </Authorship>
+        <Authorship>
+            <BookID>book4</BookID>
+            <AuthorID>author4</AuthorID>
+        </Authorship>
+        <Authorship>
+            <BookID>book5</BookID>
+            <AuthorID>author5</AuthorID>
+        </Authorship>
+        <Authorship>
+            <BookID>book6</BookID>
+            <AuthorID>author6</AuthorID>
+        </Authorship>
+        <Authorship>
+            <BookID>book7</BookID>
+            <AuthorID>author7</AuthorID>
+        </Authorship>
+        <Authorship>
+            <BookID>book8</BookID>
+            <AuthorID>author8</AuthorID>
+        </Authorship>
+        <Authorship>
+            <BookID>book9</BookID>
+            <AuthorID>author9</AuthorID>
+        </Authorship>
+        <Authorship>
+            <BookID>book10</BookID>
+            <AuthorID>author9</AuthorID>
+        </Authorship>
+    </Authorships>
 </Library>

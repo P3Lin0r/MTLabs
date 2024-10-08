@@ -4,6 +4,8 @@
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="Books" type="BooksType"/>
+                <xs:element name="Authors" type="AuthorsType"/>
+                <xs:element name="Authorships" type="AuthorshipsType"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -16,7 +18,6 @@
     <xs:complexType name="BookType">
         <xs:sequence>
             <xs:element name="Shelf" type="ShelfType"/>
-            <xs:element name="Authors" type="AuthorsType"/>
             <xs:element name="Title" type="xs:string"/>
             <xs:element name="EditedBy" type="xs:string"/>
             <xs:element name="TotalCopies" type="xs:int"/>
@@ -45,5 +46,20 @@
             <xs:element name="FirstName" type="xs:string"/>
             <xs:element name="LastName" type="xs:string"/>
         </xs:sequence>
+        <xs:attribute name="id" type="xs:ID" use="required"/>
     </xs:complexType>
+
+    <xs:complexType name="AuthorshipsType">
+        <xs:sequence>
+            <xs:element name="Authorship" type="AuthorshipType" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="AuthorshipType">
+        <xs:sequence>
+            <xs:element name="BookID" type="xs:IDREF"/>
+            <xs:element name="AuthorID" type="xs:IDREF"/>
+        </xs:sequence>
+    </xs:complexType>
+
 </xs:schema>

@@ -1,17 +1,25 @@
-<!ELEMENT Library (Books)>
+<!ELEMENT Library (Books, Authors, Authorships)>
+
 <!ELEMENT Books (Book+)>
-<!ELEMENT Book (Shelf, Authors, Title, EditedBy, TotalCopies, CopiesIssued)>
-<!ELEMENT Shelf (Genre, Theme)>
-<!ELEMENT Genre (#PCDATA)>
-<!ELEMENT Theme (#PCDATA)>
-<!ELEMENT Authors (Author+)>
-<!ELEMENT Author (FirstName, LastName)>
-<!ELEMENT FirstName (#PCDATA)>
-<!ELEMENT LastName (#PCDATA)>
+<!ELEMENT Book (Shelf, Title, EditedBy, TotalCopies, CopiesIssued)>
 <!ELEMENT Title (#PCDATA)>
 <!ELEMENT EditedBy (#PCDATA)>
 <!ELEMENT TotalCopies (#PCDATA)>
 <!ELEMENT CopiesIssued (#PCDATA)>
-
 <!ATTLIST Book id ID #REQUIRED>
+
+<!ELEMENT Shelf (Genre, Theme)>
+<!ELEMENT Genre (#PCDATA)>
+<!ELEMENT Theme (#PCDATA)>
 <!ATTLIST Shelf number NMTOKEN #REQUIRED>
+
+<!ELEMENT Authors (Author+)>
+<!ELEMENT Author (FirstName, LastName)>
+<!ELEMENT FirstName (#PCDATA)>
+<!ELEMENT LastName (#PCDATA)>
+<!ATTLIST Author id ID #REQUIRED>
+
+<!ELEMENT Authorships (Authorship+)>
+<!ELEMENT Authorship (BookID, AuthorID)>
+<!ELEMENT BookID (#PCDATA)>
+<!ELEMENT AuthorID (#PCDATA)>
