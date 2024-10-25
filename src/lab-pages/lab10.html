@@ -10,13 +10,19 @@
     <div class="wrapper">
         <h2>Лабораторна робота 10</h2>
         <div id="xmlDisplay">
-            <h3>XML </h3>
+            <h3>XML</h3>
             <pre id="xmlContent">Завантаження XML...</pre>
         </div>
 
-        <div id="tableDisplay">
-            <h3>Table</h3>
-            <div id="booksTable">Завантаження таблиці...</div>
+        <!-- Исходная таблица без XSL -->
+        <div id="tableOriginal">            
+            <div id="originalTable"></div>
+        </div>
+
+        <!-- Итоговая таблица с XSL-трансформацией -->
+        <div id="tableTransformed">
+            <h2>Кінцева таблиця</h3>
+            <div id="booksTable"></div>
         </div>
     </div>
     <script src="../lab-scripts/lab10.js"></script>
