@@ -33,17 +33,22 @@ function showCondition() {
 }
 
 
-
 function showResult() {
     const contentElement = document.querySelector('.content');
     contentElement.innerHTML = '';
 
-    const iframe = document.createElement('iframe');
-    iframe.style.width = '100%';
-    iframe.style.height = '600px';
-    contentElement.appendChild(iframe);
+    
 
-    fetch(`./src/lab-pages/lab${currentLabNumber}.html`)
+    const openButton = document.createElement('button');
+    openButton.textContent = 'Відкрити сторінку у новому вікні';
+    openButton.classList.add('open-page-button');
+
+    if(currentLabNumber!=10){
+        const iframe = document.createElement('iframe');
+        iframe.style.width = '100%';
+        iframe.style.height = '600px';
+        contentElement.appendChild(iframe);
+        fetch(`./src/lab-pages/lab${currentLabNumber}.html`)
         .then(response => response.text())
         .then(htmlContent => {
             const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
@@ -65,15 +70,23 @@ function showResult() {
             contentElement.innerHTML = 'Ошибка при загрузке результата';
         });
 
-    const openButton = document.createElement('button');
-    openButton.textContent = 'Відкрити сторінку у новому вікні';
-    openButton.classList.add('open-page-button');
+
+        contentElement.insertBefore(openButton, iframe);
+    }
+    else{
+        openButton.style.height = '100px';
+        contentElement.appendChild(openButton);
+
+    }
+
+
+    
 
     openButton.addEventListener('click', () => {
         window.open(`./src/lab-pages/lab${currentLabNumber}.html`, '_blank');
     });
 
-    contentElement.insertBefore(openButton, iframe);
+    
 }
 
 
@@ -311,7 +324,14 @@ function labBtnChanger(){
             );
         }
         else if(currentLabNumber === 10){
-            
+            buttons.push(
+                '<div class="button condition" onclick="showCondition()">Умова</div>',
+                '<div class="button result" onclick="showResult()">Результат</div>',
+                '<div class="button htmlshow" onclick="showHTML()">HTML</div>',
+                '<div class="button cssshow" onclick="showCSS()">CSS</div>',
+                '<div class="button jsshow" onclick="showJS()">JS</div>',
+                '<div class="button xmlshow" onclick="showXML()">XML</div>',
+            );
         }
     }
     bwrp.insertAdjacentHTML('beforeend', buttons.join(''));

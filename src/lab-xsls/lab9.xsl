@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    exclude-result-prefixes="xs"
     version="1.0">
-
-    <!-- Sort books by title in ascending order -->
+    
+    <xsl:key name="authorship-by-book" match="Authorship" use="BookID"/>
+    <xsl:key name="author-by-id" match="Author" use="@id"/>
     <xsl:template match="/">
         <html>
             <body>
-                <h2>Library Catalog</h2>
+                <h2>Каталог Библиотеки</h2>
                 <table border="1">
                     <tr>
-                        <th>Title</th>
-                        <th>Author</th>
-                        <th>Genre</th>
-                        <th>Total Copies</th>
-                        <th>Copies Issued</th>
+                        <th>Название</th>
+                        <th>Автор</th>
+                        <th>Жанр</th>
+                        <th>Всего Экземпляров</th>
+                        <th>Выдано Экземпляров</th>
                     </tr>
                     <xsl:apply-templates select="Library/Books/Book">
                         <xsl:sort select="Title" order="ascending"/>
@@ -25,12 +24,17 @@
         </html>
     </xsl:template>
 
-    <!-- Filter books with more than 5 total copies -->
     <xsl:template match="Book">
-        <xsl:if test="TotalCopies > 5">
+        <xsl:if test="TotalCopies > 10">
             <tr>
                 <td><xsl:value-of select="Title"/></td>
-                <td><xsl:value-of select="Authors/Author/FirstName"/> <xsl:value-of select="Authors/Author/LastName"/></td>
+                <td>
+                    <xsl:variable name="authorship" select="key('authorship-by-book', @id)"/>
+                    <xsl:variable name="author" select="key('author-by-id', $authorship/AuthorID)"/>
+
+                    <xsl:value-of select="$author/FirstName"/> 
+                    <xsl:value-of select="$author/LastName"/>
+                </td>
                 <td><xsl:value-of select="Shelf/Genre"/></td>
                 <td><xsl:value-of select="TotalCopies"/></td>
                 <td><xsl:value-of select="CopiesIssued"/></td>

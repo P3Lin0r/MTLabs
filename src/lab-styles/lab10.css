@@ -1,0 +1,26 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 20px;
+}
+table, th, td {
+    border: 1px solid #666;
+}
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+th {
+    background-color: #ddd;
+}
+pre {
+    background-color: #f4f4f4;
+    padding: 15px;
+    border: 1px solid #ccc;
+    overflow: auto;
+}
