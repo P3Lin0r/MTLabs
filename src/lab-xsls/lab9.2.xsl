@@ -8,7 +8,7 @@
     <xsl:template match="/">
         <html>
             <body>
-                <h3>Catalog of the Library</h3>
+                <h3>Catalog of the Library (Filtered)</h3>
                 <table border="1">
                     <tr>
                         <th>Title</th>
@@ -26,22 +26,24 @@
     </xsl:template>
 
     <xsl:template match="Book">
-        <tr>
-            <td><xsl:value-of select="Title"/></td>
-            <td><xsl:value-of select="Shelf/Genre"/></td>
-            <td><xsl:value-of select="Shelf/Theme"/></td>
-            <td><xsl:value-of select="EditedBy"/></td>
-            <td><xsl:value-of select="TotalCopies"/></td>
-            <td><xsl:value-of select="CopiesIssued"/></td>
-            <td>
-                <xsl:variable name="authorship" select="key('authorship-by-book', @id)"/>
-                <xsl:variable name="author" select="key('author-by-id', $authorship/AuthorID)"/>
+        <xsl:if test="TotalCopies > 14">
+            <tr>
+                <td><xsl:value-of select="Title"/></td>
+                <td><xsl:value-of select="Shelf/Genre"/></td>
+                <td><xsl:value-of select="Shelf/Theme"/></td>
+                <td><xsl:value-of select="EditedBy"/></td>
+                <td><xsl:value-of select="TotalCopies"/></td>
+                <td><xsl:value-of select="CopiesIssued"/></td>
+                <td>
+                    <xsl:variable name="authorship" select="key('authorship-by-book', @id)"/>
+                    <xsl:variable name="author" select="key('author-by-id', $authorship/AuthorID)"/>
 
-                <xsl:value-of select="$author/FirstName"/> 
-                <xsl:text> </xsl:text>
-                <xsl:value-of select="$author/LastName"/>
-            </td>
-        </tr>
+                    <xsl:value-of select="$author/FirstName"/> 
+                    <xsl:text> </xsl:text>
+                    <xsl:value-of select="$author/LastName"/>
+                </td>
+            </tr>
+        </xsl:if>
     </xsl:template>
 
 </xsl:stylesheet>

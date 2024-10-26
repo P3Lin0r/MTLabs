@@ -43,7 +43,7 @@ function showResult() {
     openButton.textContent = 'Відкрити сторінку у новому вікні';
     openButton.classList.add('open-page-button');
 
-    if(currentLabNumber!=10){
+    if(currentLabNumber!=10 && currentLabNumber!=9){
         const iframe = document.createElement('iframe');
         iframe.style.width = '100%';
         iframe.style.height = '600px';
@@ -79,14 +79,9 @@ function showResult() {
 
     }
 
-
-    
-
     openButton.addEventListener('click', () => {
         window.open(`./src/lab-pages/lab${currentLabNumber}.html`, '_blank');
-    });
-
-    
+    });    
 }
 
 
@@ -319,8 +314,11 @@ function labBtnChanger(){
         else if(currentLabNumber === 9){
             buttons.push(
                 '<div class="button condition" onclick="showCondition()">Умова</div>',
+                '<div class="button result" onclick="showResult()">Результат</div>',
+                '<div class="button htmlshow" onclick="showHTML()">HTML</div>',
+                '<div class="button cssshow" onclick="showCSS()">CSS</div>',
+                '<div class="button jsshow" onclick="showJS()">JS</div>',
                 '<div class="button xmlshow" onclick="showXML()">XML</div>',
-                '<div class="button showSXL" onclick="showXSL()">XSL</div>',
             );
         }
         else if(currentLabNumber === 10){

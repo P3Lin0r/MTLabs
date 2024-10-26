@@ -8,7 +8,7 @@
     <xsl:template match="/">
         <html>
             <body>
-                <h3>Catalog of the Library</h3>
+                <h3>Catalog of the Library (Sorted)</h3>
                 <table border="1">
                     <tr>
                         <th>Title</th>
@@ -19,7 +19,9 @@
                         <th>Copies Issued</th>
                         <th>Author</th>
                     </tr>
-                    <xsl:apply-templates select="Library/Books/Book"></xsl:apply-templates>
+                    <xsl:apply-templates select="Library/Books/Book">
+                        <xsl:sort select="Title" order="ascending"/>
+                    </xsl:apply-templates>
                 </table>
             </body>
         </html>
