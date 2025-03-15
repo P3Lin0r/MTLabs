@@ -19,7 +19,7 @@ function showCondition() {
     fetch(`./src/conditions/lab${currentLabNumber}.txt`)
         .then(response => response.text())
         .then(txtContent => {
-            condition.textContent = txtContent;
+            condition.innerHTML = txtContent.replace(/\n/g, '<br>');
             contentElement.appendChild(condition);
         })
         .catch(error => {
@@ -37,43 +37,43 @@ function showResult() {
     const contentElement = document.querySelector('.content');
     contentElement.innerHTML = '';
 
-    
+
 
     const openButton = document.createElement('button');
     openButton.textContent = 'Відкрити сторінку у новому вікні';
     openButton.classList.add('open-page-button');
 
-    if(currentLabNumber!=10 && currentLabNumber!=9){
+    if (currentLabNumber != 10 && currentLabNumber != 9) {
         const iframe = document.createElement('iframe');
         iframe.style.width = '100%';
         iframe.style.height = '600px';
         contentElement.appendChild(iframe);
         fetch(`./src/lab-pages/lab${currentLabNumber}.html`)
-        .then(response => response.text())
-        .then(htmlContent => {
-            const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-            iframeDoc.open();
-            iframeDoc.write(htmlContent);
-            iframeDoc.close();
+            .then(response => response.text())
+            .then(htmlContent => {
+                const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                iframeDoc.open();
+                iframeDoc.write(htmlContent);
+                iframeDoc.close();
 
-            const link = iframeDoc.createElement('link');
-            link.rel = 'stylesheet';
-            link.href = `./src/lab-styles/lab${currentLabNumber}.css`;
-            iframeDoc.head.appendChild(link);
+                const link = iframeDoc.createElement('link');
+                link.rel = 'stylesheet';
+                link.href = `./src/lab-styles/lab${currentLabNumber}.css`;
+                iframeDoc.head.appendChild(link);
 
-            const script = iframeDoc.createElement('script');
-            script.src = `./src/lab-scripts/lab${currentLabNumber}.js`;
-            iframeDoc.body.appendChild(script);
-        })
-        .catch(error => {
-            console.error('Ошибка при загрузке файла:', error);
-            contentElement.innerHTML = 'Ошибка при загрузке результата';
-        });
+                const script = iframeDoc.createElement('script');
+                script.src = `./src/lab-scripts/lab${currentLabNumber}.js`;
+                iframeDoc.body.appendChild(script);
+            })
+            .catch(error => {
+                console.error('Ошибка при загрузке файла:', error);
+                contentElement.innerHTML = 'Ошибка при загрузке результата';
+            });
 
 
         contentElement.insertBefore(openButton, iframe);
     }
-    else{
+    else {
         openButton.style.height = '100px';
         contentElement.appendChild(openButton);
 
@@ -81,7 +81,7 @@ function showResult() {
 
     openButton.addEventListener('click', () => {
         window.open(`./src/lab-pages/lab${currentLabNumber}.html`, '_blank');
-    });    
+    });
 }
 
 
@@ -168,7 +168,7 @@ function selectSubMenu(labNumber) {
 //////////////
 //////////
 
-function showXML(){
+function showXML() {
     const contentElement = document.querySelector('.content');
     contentElement.innerHTML = '';
 
@@ -191,8 +191,8 @@ function showStModel() {
     contentElement.innerHTML = '';
 
     const stModelimg = document.createElement('img');
-    fetch(`./img/lab${currentLabNumber}StModel.png`) 
-        .then(response => response.blob()) 
+    fetch(`./img/lab${currentLabNumber}StModel.png`)
+        .then(response => response.blob())
         .then(blob => {
             const objectURL = URL.createObjectURL(blob);
             stModelimg.src = objectURL;
@@ -202,13 +202,13 @@ function showStModel() {
             console.error('Ошибка при загрузке изображения:', error);
         });
 }
-function showDnModel(){
+function showDnModel() {
     const contentElement = document.querySelector('.content');
     contentElement.innerHTML = '';
 
     const dnModelimg = document.createElement('img');
     fetch(`./img/lab${currentLabNumber}DnModel.png`)
-        .then(response => response.blob()) 
+        .then(response => response.blob())
         .then(blob => {
             const objectURL = URL.createObjectURL(blob);
             dnModelimg.src = objectURL;
@@ -219,7 +219,7 @@ function showDnModel(){
         });
 }
 
-function showDTD(){
+function showDTD() {
     const contentElement = document.querySelector('.content');
     contentElement.innerHTML = '';
 
@@ -238,7 +238,7 @@ function showDTD(){
         });
 }
 
-function showXSD(){
+function showXSD() {
     const contentElement = document.querySelector('.content');
     contentElement.innerHTML = '';
 
@@ -257,7 +257,7 @@ function showXSD(){
         });
 }
 
-function showXSL(){
+function showXSL() {
     const contentElement = document.querySelector('.content');
     contentElement.innerHTML = '';
 
@@ -276,9 +276,45 @@ function showXSL(){
         });
 }
 
+/////////////////////
+/////////////////////
+/////////////////////
+/////////////////////
+/////////////////////
+/////////////////////
+/////////////////////
+/////////////////////
+/////////////////////
+
+function showScreenshots(step) {
+    const contentElement = document.querySelector('.content');
+
+    contentElement.innerHTML = '';
+    i = 1;
+
+    function loadNextImage() {
+        const img = document.createElement('img');
+        img.src = `./src/lab-screenshots/lab${currentLabNumber}_screenshots/step${step}_${i}.png`;
+        img.alt = `Скриншот ${step}-${i}`;
+        img.style.width = '100%';
+        img.style.marginBottom = '15px';
+
+        img.onload = function () {
+            contentElement.appendChild(img);
+            i++;
+            loadNextImage();
+        };
+
+        img.onerror = function () {
+            console.log(`Файл не найден: ${img.src}, остановка загрузки.`);
+        };
+    }
+
+    loadNextImage();
+}
 
 
-function labBtnChanger(){
+function labBtnChanger() {
     const bwrp = document.querySelector('.buttons-wrapper');
     bwrp.innerHTML = ' ';
     const buttons = [];
@@ -286,16 +322,16 @@ function labBtnChanger(){
     if (currentLabNumber > 0 && currentLabNumber <= 6 || typeof currentLabNumber === 'string') {
 
         buttons.push(
-          '<div class="button condition" onclick="showCondition()">Умова</div>',
-          '<div class="button result" onclick="showResult()">Результат</div>',
-          '<div class="button htmlshow" onclick="showHTML()">HTML</div>',
-          '<div class="button cssshow" onclick="showCSS()">CSS</div>',
-          '<div class="button jsshow" onclick="showJS()">JS</div>'
-        );        
+            '<div class="button condition" onclick="showCondition()">Умова</div>',
+            '<div class="button result" onclick="showResult()">Результат</div>',
+            '<div class="button htmlshow" onclick="showHTML()">HTML</div>',
+            '<div class="button cssshow" onclick="showCSS()">CSS</div>',
+            '<div class="button jsshow" onclick="showJS()">JS</div>'
+        );
     }
-    if(currentLabNumber > 6 && currentLabNumber <=10){
-        
-        if(currentLabNumber === 7){
+    if (currentLabNumber > 6 && currentLabNumber <= 11) {
+
+        if (currentLabNumber === 7) {
             buttons.push(
                 '<div class="button condition" onclick="showCondition()">Умова</div>',
                 '<div class="button statisticalmodel" onclick="showStModel()">Статистична модель</div>',
@@ -303,7 +339,7 @@ function labBtnChanger(){
                 '<div class="button xmlshow" onclick="showXML()">XML</div>',
             );
         }
-        else if(currentLabNumber === 8){
+        else if (currentLabNumber === 8) {
             buttons.push(
                 '<div class="button condition" onclick="showCondition()">Умова</div>',
                 '<div class="button xmlshow" onclick="showXML()">XML</div>',
@@ -311,7 +347,7 @@ function labBtnChanger(){
                 '<div class="button showXSD" onclick="showXSD()">XSD</div>',
             );
         }
-        else if(currentLabNumber === 9){
+        else if (currentLabNumber === 9) {
             buttons.push(
                 '<div class="button condition" onclick="showCondition()">Умова</div>',
                 '<div class="button result" onclick="showResult()">Результат</div>',
@@ -321,7 +357,7 @@ function labBtnChanger(){
                 '<div class="button xmlshow" onclick="showXML()">XML</div>',
             );
         }
-        else if(currentLabNumber === 10){
+        else if (currentLabNumber === 10) {
             buttons.push(
                 '<div class="button condition" onclick="showCondition()">Умова</div>',
                 '<div class="button result" onclick="showResult()">Результат</div>',
@@ -329,6 +365,19 @@ function labBtnChanger(){
                 '<div class="button cssshow" onclick="showCSS()">CSS</div>',
                 '<div class="button jsshow" onclick="showJS()">JS</div>',
                 '<div class="button xmlshow" onclick="showXML()">XML</div>',
+            );
+        }
+        else if (currentLabNumber === 11) {
+            buttons.push(
+                '<div class="button condition" onclick="showCondition()">Умова</div>',
+                '<div class="button screenshot" onclick="showScreenshots(1)">Скриншоти крок 1</div>',
+                '<div class="button screenshot" onclick="showScreenshots(2)">Скриншоти крок 2</div>',
+                '<div class="button screenshot" onclick="showScreenshots(3)">Скриншоти крок 3</div>',
+                '<div class="button screenshot" onclick="showScreenshots(4)">Скриншоти крок 4</div>',
+                '<div class="button screenshot" onclick="showScreenshots(5)">Скриншоти крок 5</div>',
+                '<div class="button screenshot" onclick="showScreenshots(6)">Скриншоти крок 6</div>',
+                '<div class="button screenshot" onclick="showScreenshots(7)">Скриншоти крок 7</div>',
+                '<div class="button screenshot" onclick="showScreenshots(8)">Скриншоти крок 8</div>',
             );
         }
     }
