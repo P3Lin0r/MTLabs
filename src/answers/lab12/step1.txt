@@ -1,0 +1,34 @@
+<b>•	Типи HTTP-запитів, які виконуються (GET, POST тощо).</b>
+-Тип запиту GET
+<b>•	Заголовки запитів (User-Agent, Host, Content-Type).</b>
+-user-agent:
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) 
+AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36
+-:authority:
+example.com
+-content-type:
+text/html
+<b>•	Відповідь сервера (статусний код, заголовки).</b>
+alt-svc:
+h3=":443"; ma=93600,h3-29=":443"; ma=93600,quic=":443"; ma=93600; v="43"
+cache-control:
+max-age=1391
+content-type:
+text/html
+date:
+Sun, 16 Mar 2025 16:04:26 GMT
+etag:
+"84238dfc8092e5d9c0dac8ef93371a07:1736799080.121134"
+last-modified:
+Mon, 13 Jan 2025 20:11:20 GMT
+quic-version:
+0x00000001
+
+<b>Який статусний код отримано для основного ресурсу сторінки?</b>
+Отримано статусний код 304 Not Modified.
+<b>Які заголовки використовуються для кешування?</b>
+Cache-Control: max-age=1391
+Etag: "84238dfc8092e5d9c0dac8ef93371a07:1736799080.121134"
+Last-Modified: Mon, 13 Jan 2025 20:11:20 GMT
+If-Modified-Since: Mon, 13 Jan 2025 20:11:20 GMT
+If-None-Match: "84238dfc8092e5d9c0dac8ef93371a07:1736799080.121134"

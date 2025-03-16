@@ -35,6 +35,10 @@ body {
     cursor: pointer;
     transition: all 100ms ease-out;
 }
+.secondterm{
+    border: 1px solid #000;
+}
+
 .button:hover {
     transform: scale(1.06);
     box-shadow: 0px 4px 5px rgba(189, 184, 184, 0.5);

@@ -309,9 +309,33 @@ function showScreenshots(step) {
             console.log(`Файл не найден: ${img.src}, остановка загрузки.`);
         };
     }
-
     loadNextImage();
 }
+
+function showAnswersText(step) {
+    const contentElement = document.querySelector('.content');
+    contentElement.innerHTML = '';
+
+    const headerCond = document.createElement('h3');
+    headerCond.textContent = `Відповіді на питання:`;
+
+    const condition = document.createElement('p');
+    fetch(`./src/answers/lab${currentLabNumber}/step${step}.txt`)
+        .then(response => response.text())
+        .then(txtContent => {
+            condition.innerHTML = txtContent.replace(/\n/g, '<br>');
+            contentElement.appendChild(condition);
+        })
+        .catch(error => {
+            console.error('Ошибка при загрузке файла:', error);
+            condition.textContent = 'Ошибка при загрузке файла';
+            contentElement.appendChild(condition);
+        });
+
+    contentElement.appendChild(headerCond);
+    contentElement.appendChild(condition);
+}
+
 
 
 function labBtnChanger() {
@@ -329,7 +353,7 @@ function labBtnChanger() {
             '<div class="button jsshow" onclick="showJS()">JS</div>'
         );
     }
-    if (currentLabNumber > 6 && currentLabNumber <= 11) {
+    if (currentLabNumber > 6 && currentLabNumber <= 12) {
 
         if (currentLabNumber === 7) {
             buttons.push(
@@ -370,14 +394,29 @@ function labBtnChanger() {
         else if (currentLabNumber === 11) {
             buttons.push(
                 '<div class="button condition" onclick="showCondition()">Умова</div>',
-                '<div class="button screenshot" onclick="showScreenshots(1)">Скриншоти крок 1</div>',
-                '<div class="button screenshot" onclick="showScreenshots(2)">Скриншоти крок 2</div>',
-                '<div class="button screenshot" onclick="showScreenshots(3)">Скриншоти крок 3</div>',
-                '<div class="button screenshot" onclick="showScreenshots(4)">Скриншоти крок 4</div>',
-                '<div class="button screenshot" onclick="showScreenshots(5)">Скриншоти крок 5</div>',
-                '<div class="button screenshot" onclick="showScreenshots(6)">Скриншоти крок 6</div>',
-                '<div class="button screenshot" onclick="showScreenshots(7)">Скриншоти крок 7</div>',
-                '<div class="button screenshot" onclick="showScreenshots(8)">Скриншоти крок 8</div>',
+                '<div class="button screenshot" onclick="showScreenshots(1)">Скріншоти крок 1</div>',
+                '<div class="button screenshot" onclick="showScreenshots(2)">Скріншоти крок 2</div>',
+                '<div class="button screenshot" onclick="showScreenshots(3)">Скріншоти крок 3</div>',
+                '<div class="button screenshot" onclick="showScreenshots(4)">Скріншоти крок 4</div>',
+                '<div class="button screenshot" onclick="showScreenshots(5)">Скріншоти крок 5</div>',
+                '<div class="button screenshot" onclick="showScreenshots(6)">Скріншоти крок 6</div>',
+                '<div class="button screenshot" onclick="showScreenshots(7)">Скріншоти крок 7</div>',
+                '<div class="button screenshot" onclick="showScreenshots(8)">Скріншоти крок 8</div>',
+            );
+        }
+        else if (currentLabNumber === 12) {
+            buttons.push(
+                '<div class="button condition" onclick="showCondition()">Умова</div>',
+                '<div class="button screenshot" onclick="showScreenshots(1)">Скріншоти крок 1</div>',
+                '<div class="button screenshot" onclick="showAnswersText(1)">Відповіді до питань 1</div>',
+                '<div class="button screenshot" onclick="showScreenshots(2)">Скріншоти крок 2</div>',
+                '<div class="button screenshot" onclick="showAnswersText(2)">Відповіді до питань 2</div>',
+                '<div class="button screenshot" onclick="showScreenshots(3)">Скріншоти крок 3</div>',
+                '<div class="button screenshot" onclick="showAnswersText(3)">Відповіді до питань 3</div>',
+                '<div class="button screenshot" onclick="showScreenshots(4)">Скріншоти крок 4</div>',
+                '<div class="button screenshot" onclick="showAnswersText(4)">Відповіді до питань 4</div>',
+                '<div class="button jsshow" onclick="showJS()">Server js</div>',
+                '<div class="button screenshot" onclick="showAnswersText(5)">Контрольні відповіді</div>',
             );
         }
     }
