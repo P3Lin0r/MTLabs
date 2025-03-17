@@ -330,6 +330,26 @@ function showAnswersText(step) {
     contentElement.appendChild(condition);
 }
 
+function showServerJS() {
+    const contentElement = document.querySelector('.content');
+    contentElement.innerHTML = '';
+
+    const codeBlock = document.createElement('pre');
+    codeBlock.classList.add('code');
+
+    fetch(`./src/lab-servers/lab${currentLabNumber}-server/server.js`)
+        .then(response => response.text())
+        .then(jsContent => {
+            codeBlock.textContent = jsContent;
+            contentElement.appendChild(codeBlock);
+        })
+        .catch(error => {
+            console.error('Ошибка при загрузке JS:', error);
+            codeBlock.textContent = 'Ошибка при загрузке JS';
+            contentElement.appendChild(codeBlock);
+        });
+}
+
 
 
 function labBtnChanger() {
@@ -347,7 +367,7 @@ function labBtnChanger() {
             '<div class="button jsshow" onclick="showJS()">JS</div>'
         );
     }
-    if (currentLabNumber > 6 && currentLabNumber <= 13) {
+    if (currentLabNumber > 6) {
 
         if (currentLabNumber === 7) {
             buttons.push(
@@ -420,6 +440,13 @@ function labBtnChanger() {
                 '<div class="button htmlshow" onclick="showHTML()">HTML</div>',
                 '<div class="button cssshow" onclick="showCSS()">CSS</div>',
                 '<div class="button jsshow" onclick="showJS()">JS</div>',
+            );
+        }
+        else if (currentLabNumber === 14) {
+            buttons.push(
+                '<div class="button condition" onclick="showCondition()">Умова</div>',
+                '<div class="button screenshot" onclick="showScreenshots(1)">Скріншоти</div>',
+                '<div class="button servershow" onclick="showServerJS()">ServerJS</div>',
             );
         }
     }
