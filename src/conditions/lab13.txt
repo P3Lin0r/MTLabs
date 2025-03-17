@@ -1,0 +1,3 @@
+<b>Варіант 9</b>	
+Видалити товар за його <b>ID</b>	
+DELETE /api/products/:id

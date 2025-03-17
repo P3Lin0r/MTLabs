@@ -33,7 +33,7 @@ function showCondition() {
 }
 
 
-function showResult() {
+function showResult(showInContent = true) {
     const contentElement = document.querySelector('.content');
     contentElement.innerHTML = '';
 
@@ -43,7 +43,7 @@ function showResult() {
     openButton.textContent = 'Відкрити сторінку у новому вікні';
     openButton.classList.add('open-page-button');
 
-    if (currentLabNumber != 10 && currentLabNumber != 9) {
+    if (showInContent) {
         const iframe = document.createElement('iframe');
         iframe.style.width = '100%';
         iframe.style.height = '600px';
@@ -161,12 +161,6 @@ function selectSubMenu(labNumber) {
         submenuLab.classList.add('hidden');
     }
 }
-///////////////
-/////////////
-//////////////
-/////////////
-//////////////
-//////////
 
 function showXML() {
     const contentElement = document.querySelector('.content');
@@ -353,7 +347,7 @@ function labBtnChanger() {
             '<div class="button jsshow" onclick="showJS()">JS</div>'
         );
     }
-    if (currentLabNumber > 6 && currentLabNumber <= 12) {
+    if (currentLabNumber > 6 && currentLabNumber <= 13) {
 
         if (currentLabNumber === 7) {
             buttons.push(
@@ -374,7 +368,7 @@ function labBtnChanger() {
         else if (currentLabNumber === 9) {
             buttons.push(
                 '<div class="button condition" onclick="showCondition()">Умова</div>',
-                '<div class="button result" onclick="showResult()">Результат</div>',
+                '<div class="button result" onclick="showResult(false)">Результат</div>',
                 '<div class="button htmlshow" onclick="showHTML()">HTML</div>',
                 '<div class="button cssshow" onclick="showCSS()">CSS</div>',
                 '<div class="button jsshow" onclick="showJS()">JS</div>',
@@ -384,7 +378,7 @@ function labBtnChanger() {
         else if (currentLabNumber === 10) {
             buttons.push(
                 '<div class="button condition" onclick="showCondition()">Умова</div>',
-                '<div class="button result" onclick="showResult()">Результат</div>',
+                '<div class="button result" onclick="showResult(false)">Результат</div>',
                 '<div class="button htmlshow" onclick="showHTML()">HTML</div>',
                 '<div class="button cssshow" onclick="showCSS()">CSS</div>',
                 '<div class="button jsshow" onclick="showJS()">JS</div>',
@@ -417,6 +411,15 @@ function labBtnChanger() {
                 '<div class="button screenshot" onclick="showAnswersText(4)">Відповіді до питань 4</div>',
                 '<div class="button jsshow" onclick="showJS()">Server js</div>',
                 '<div class="button screenshot" onclick="showAnswersText(5)">Контрольні відповіді</div>',
+            );
+        }
+        else if (currentLabNumber === 13) {
+            buttons.push(
+                '<div class="button condition" onclick="showCondition()">Умова</div>',
+                '<div class="button result" onclick="showResult(false)">Результат</div>',
+                '<div class="button htmlshow" onclick="showHTML()">HTML</div>',
+                '<div class="button cssshow" onclick="showCSS()">CSS</div>',
+                '<div class="button jsshow" onclick="showJS()">JS</div>',
             );
         }
     }
