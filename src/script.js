@@ -449,6 +449,11 @@ function labBtnChanger() {
                 '<div class="button servershow" onclick="showServerJS()">ServerJS</div>',
             );
         }
+        else if (currentLabNumber === 15) {
+            buttons.push(
+                '<div class="button condition" onclick="showCondition()">Умова</div>',
+            );
+        }
     }
     bwrp.insertAdjacentHTML('beforeend', buttons.join(''));
 }
