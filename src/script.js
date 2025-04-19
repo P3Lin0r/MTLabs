@@ -330,14 +330,14 @@ function showAnswersText(step) {
     contentElement.appendChild(condition);
 }
 
-function showServerJS() {
+function showServerJS(path) {
     const contentElement = document.querySelector('.content');
     contentElement.innerHTML = '';
 
     const codeBlock = document.createElement('pre');
     codeBlock.classList.add('code');
 
-    fetch(`./src/lab-servers/lab${currentLabNumber}-server/server.js`)
+    fetch(`./src/${path}/server.js`)
         .then(response => response.text())
         .then(jsContent => {
             codeBlock.textContent = jsContent;
@@ -350,6 +350,63 @@ function showServerJS() {
         });
 }
 
+function showDockerfile() {
+    const contentElement = document.querySelector('.content');
+    contentElement.innerHTML = '';
+
+    const codeBlock = document.createElement('pre');
+    codeBlock.classList.add('code');
+
+    fetch(`./src/lab-docker/lab${currentLabNumber}docker/Dockerfile`)
+        .then(response => response.text())
+        .then(jsContent => {
+            codeBlock.textContent = jsContent;
+            contentElement.appendChild(codeBlock);
+        })
+        .catch(error => {
+            console.error('Ошибка при загрузке Dockerfile:', error);
+            codeBlock.textContent = 'Ошибка при загрузке Dockerfile';
+            contentElement.appendChild(codeBlock);
+        });
+}
+function showDockerCompose() {
+    const contentElement = document.querySelector('.content');
+    contentElement.innerHTML = '';
+
+    const codeBlock = document.createElement('pre');
+    codeBlock.classList.add('code');
+
+    fetch(`./src/lab-docker/lab${currentLabNumber}docker/docker-compose.yml`)
+        .then(response => response.text())
+        .then(jsContent => {
+            codeBlock.textContent = jsContent;
+            contentElement.appendChild(codeBlock);
+        })
+        .catch(error => {
+            console.error('Ошибка при загрузке docker-compose:', error);
+            codeBlock.textContent = 'Ошибка при загрузке docker-compose';
+            contentElement.appendChild(codeBlock);
+        });
+}
+function showPackage() {
+    const contentElement = document.querySelector('.content');
+    contentElement.innerHTML = '';
+
+    const codeBlock = document.createElement('pre');
+    codeBlock.classList.add('code');
+
+    fetch(`./src/lab-docker/lab${currentLabNumber}docker/package.json`)
+        .then(response => response.text())
+        .then(jsContent => {
+            codeBlock.textContent = jsContent;
+            contentElement.appendChild(codeBlock);
+        })
+        .catch(error => {
+            console.error('Ошибка при загрузке package.json:', error);
+            codeBlock.textContent = 'Ошибка при загрузке package.json';
+            contentElement.appendChild(codeBlock);
+        });
+}
 
 
 function labBtnChanger() {
@@ -443,15 +500,27 @@ function labBtnChanger() {
             );
         }
         else if (currentLabNumber === 14) {
+            const path = `lab-servers/lab${currentLabNumber}-server`
             buttons.push(
                 '<div class="button condition" onclick="showCondition()">Умова</div>',
                 '<div class="button screenshot" onclick="showScreenshots(1)">Скріншоти</div>',
-                '<div class="button servershow" onclick="showServerJS()">ServerJS</div>',
+                `<div class="button servershow" onclick="showServerJS('${path}')">ServerJS</div>`,
             );
         }
         else if (currentLabNumber === 15) {
             buttons.push(
                 '<div class="button condition" onclick="showCondition()">Умова</div>',
+            );
+        }
+        else if (currentLabNumber === 16) {
+            const path = `lab-docker/lab${currentLabNumber}docker`
+            buttons.push(
+                '<div class="button condition" onclick="showCondition()">Умова</div>',
+                '<div class="button condition" onclick="showDockerfile()">Dockerfile</div>',
+                '<div class="button condition" onclick="showDockerCompose()">docker-compose</div>',
+                '<div class="button condition" onclick="showPackage()">package.json</div>',
+                `<div class="button servershow" onclick="showServerJS('${path}')">Програма</div>`,
+                '<div class="button screenshot" onclick="showScreenshots(1)">Скріншоти результату</div>',
             );
         }
     }
