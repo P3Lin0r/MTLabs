@@ -407,6 +407,26 @@ function showPackage() {
             contentElement.appendChild(codeBlock);
         });
 }
+function showVideo() {
+    const contentElement = document.querySelector('.content');
+    contentElement.innerHTML = '';
+
+    const video = document.createElement("video");
+    // video.setAttribute("controls", "play-large, restart, rewind, play, fast-forward, progress, current-time, mute, volume, captions, settings, pip, airplay, download, fullscreen");
+    video.setAttribute("controls", "");
+
+    const videoUrl = `./src/lab-videos/lab${currentLabNumber}video.mp4`;
+    video.src = videoUrl;
+
+    video.onerror = function () {
+        const codeBlock = document.createElement('pre');
+        codeBlock.classList.add('code');
+        console.error('Ошибка при загрузке video:', error);
+        codeBlock.textContent = 'Ошибка при загрузке video';
+        contentElement.appendChild(codeBlock);
+    }
+    contentElement.appendChild(video);
+}
 
 
 function labBtnChanger() {
@@ -520,6 +540,7 @@ function labBtnChanger() {
                 '<div class="button condition" onclick="showDockerCompose()">docker-compose</div>',
                 '<div class="button condition" onclick="showPackage()">package.json</div>',
                 `<div class="button servershow" onclick="showServerJS('${path}')">Програма</div>`,
+                '<div class="button condition" onclick="showVideo()">Відео</div>',
                 '<div class="button screenshot" onclick="showScreenshots(1)">Скріншоти результату</div>',
             );
         }
